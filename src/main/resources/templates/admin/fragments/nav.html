@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head>
+  </head>
+  <body>
+    <div th:fragment="nav ">
+      <nav class="navbar navbar-expand-sm bg-light navbar-dark sticky-top">
+        <div class="collapse navbar-collapse justify-content-center" id="collapsibleNavId">
+          <ul class="navbar-nav ">
+            <div class="btn-group btn-group-lg">
+              <!-- <a class="navbar-brand" href="#">
+                <img th:src="@{/images/logo.PNG}" alt="logo" style="width:40px;">
+              </a> -->
+              <li class="nav-item mx-3">
+                <a class="btn btn-primary text-uppercase" href="#">Home Page</a>
+              </li>
+              <li class="nav-item mx-3 ">
+                <a class="btn btn-primary text-uppercase" href="#">Manage Customer</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a class="btn btn-primary text-uppercase" th:href="@{/admin/categories}">Manage Category</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a class="btn btn-primary text-uppercase" th:href="@{/admin/products}">Manage Product</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a class="btn btn-primary text-uppercase" href="#">Manage Order</a>
+              </li>
+              <li class="nav-item mx-3">
+                <a class="btn btn-primary text-uppercase" href="#">Manage Profile</a>
+              </li>
+            </div>
+          </ul>
+          <!-- <form class="form-inline">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+            <button class="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+          </form> -->
+        </div>
+      </nav>
+    </div>
+  </body>
+</html>

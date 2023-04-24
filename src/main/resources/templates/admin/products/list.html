@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{admin/dashboardLayout.html}">
+    <head>
+         
+    </head>
+      <body>
+          <main class="container" layout:fragment="content">
+            <section class="row">
+              <div class="col mt-5">
+                <div class="card">
+                  <div class="card-header">
+                    <h2 class="col-9">List of Products</h2>
+                  </div>
+                  <div class="card-body">
+                    <div th:if="${message != null}" class="alert alert-primary alert-dismissible fade show" id="mess" role="alert">
+                      <button type="button" class="close" data-dismiss="alert">&times;</button>
+                        <i>[[${message}]]</i>
+                    </div>
+                    <div class="row mt-2 mb-2">
+                      <div class="col">
+                        <form th:action="@{/admin/products}">
+                          <div class="form-inline float-left">
+                            <input type="text" class="form-control ml-2" name="name" id="name" aria-describedby="helpId" placeholder="Product Name">
+                            <button class="btn btn-primary ml-2">Search</button>
+                          </div>
+                        </form>
+                        <div class="float-right">
+                          <input class="btn btn-danger" type="submit" form="form-1" id="bta" value="Delete Selected Products">
+                          <a class="btn btn-primary" th:href="@{/admin/products/add}">Add New Product</a>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row" th:if="${!productPage.hasContent()}">
+                      <div class="col">
+                        <div class="alert alert-danger" role="alert">
+                          <strong>No Products Founded</strong>
+                        </div>
+                      </div>
+                    </div>
+                    <table class="table table-hover" th:if="${productPage.hasContent()}">
+                      <thead class="thead-inverse thead-light">
+                        <tr>
+                          <th><input type="checkbox" onClick="toggle(this)" class="form-check-inline"></th>
+                          <th class="text-center">Image</th>
+                          <th>Name</th>
+                          <th class="text-center">Quantity</th>
+                          <th class="text-center">Unit Price</th>
+                          <th class="text-center">Discount</th>
+                          <th class="text-center">Status</th>
+                          <th class="text-center">Category</th>
+                          <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                      <form th:action="@{/admin/products/deleteMany}" id="form-1">
+                        <tr th:each="item, iStart : ${productPage.content}">
+                          <td class="align-middle"><input type="checkbox" name="selectMember" th:value="${item.productId}" class="form-check-inline"></td>
+                          <td class="text-center"><img th:src="${'/admin/products/images/' + item.image}" width="70px" class="img-fluid" alt=""></td>
+                          <td th:text="${item.name}" class="align-middle"></td>
+                          <td th:text="${item.quantity}" class="align-middle text-center"></td>
+                          <td th:text="${item.unitPrice}" class="align-middle text-center"></td>
+                          <td th:text="${item.discount}" class="align-middle text-center"></td>
+                          <td th:text="${item.status}" class="align-middle text-center"></td>
+                          <td th:text="${item.category.name}" class="align-middle text-center"></td>
+                          <td class="align-middle">
+                            <a th:href="@{'/admin/products/view/'+${item.productId}}" class="btn btn-info"><i class="fas fa-info"></i> Detail</a>
+                            <a th:href="@{'/admin/products/edit/'+${item.productId}}" class="btn btn-warning"><i class="fas fa-edit"></i> Edit</a>
+                            <a th:data-id="${item.productId}" 
+                              th:data-name="${item.name}" 
+                              onclick="showConfirmModalDialog(this.getAttribute('data-id'), this.getAttribute('data-name'))" 
+                              class="btn btn-danger"><i class="fas fa-recycle"></i> Delete</a>
+                          </td>
+                        </tr>
+                      </form>
+                          
+                        </tbody>
+                    </table>
+                      <script>
+                        function showConfirmModalDialog(id, name){
+                          $('#productName').text(name);
+                          $('#yesOption').attr('href', '/admin/products/delete/' + id);
+                          $('#confirmationId').modal('show');
+                        }
+                      </script>
+                      <!-- Start Modal Delete Confirm -->
+                      <div class="modal fade" id="confirmationId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <h5 class="modal-title">Confirmation</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                              Do you want to delete " <span id="productName"></span> " ?
+                            </div>
+                            <div class="modal-footer">
+                              <a id="yesOption" type="button" class="btn btn-danger">Yes</a>
+                              <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- End Modal Delete Confirm -->
+                  </div>
+                  <div class="card-footer text-muted">
+                    <form action="">
+                      <div class="form-inline float-left">
+                        <label for="size">Page Size:</label>
+                        <select name="size" id="size" class="form-control" onchange="this.form.submit()">
+                          <option th:selected="${productPage.size == 5}" value="5">5</option>
+                          <option th:selected="${productPage.size == 10}" value="10">10</option>
+                          <option th:selected="${productPage.size == 15}" value="15">15</option>
+                          <option th:selected="${productPage.size == 20}" value="20">20</option>
+                          <option th:selected="${productPage.size == 30}" value="30">30</option>
+                        </select>
+                      </div>
+                    </form>
+                    <nav aria-label="Page navigation" th:if="${productPage.totalPages > 0}">
+                      <ul class="pagination justify-content-center">
+                        <li th:class="${1 == productPage.number + 1}? 'page-item active' : 'page-item'">
+                          <a th:href="@{/admin/products(name = ${name}, size = ${productPage.size}, page = ${1})}" class="page-link">First</a>
+                        </li>
+                        <li class="page-item active" th:each="pageNumber : ${pageNumbers}" th:if="${productPage.totalPages > 1}" th:class="${pageNumber == productPage.number + 1} ? 'page-item active' : 'page-item'">
+                          <a th:href="@{/admin/products(name = ${name}, size = ${productPage.size}, page = ${pageNumber})}" class="page-link" th:text="${pageNumber}"></a>
+                        </li>
+                        <li th:class="${productPage.totalPages == productPage.number + 1}? 'page-item active' : 'page-item'">
+                          <a th:href="@{/admin/products(name = ${name}, size = ${productPage.size}, page = ${productPage.totalPages})}" class="page-link">Last</a>
+                        </li>
+                      </ul>
+                    </nav>
+                  </div>
+                </div>
+              </div>
+            </section>
+            <footer class="row"></footer>
+          </main>
+      </body>
+</html>
