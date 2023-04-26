@@ -6,40 +6,55 @@
 
 <body>
   <div th:fragment="nav">
-      <nav class="navbar navbar-expand-sm navbar-light bgsecondary py-0">
+    <nav class="navbar navbar-expand-sm navbar-light bgsecondary py-0">
       <div class="container">
         <div class="collapse navbar-collapse row" id="collapsibleNavId">
           <div class="col-3">
-            <a class="navbar-brand" href="#"><img src="/images/logo.PNG" width="150px" alt="logo"></a>
+            <a class="navbar-brand" href="#"><img src="/images/logo1.png" width="150px" alt="logo"></a>
           </div>
-          <div class="col-6">
+          <div class="col-4 px-0">
             <form class="form-inline" action="">
-              <input class="form-control mr-sm-2 w-75" type="text" placeholder="Search Product">
+              <input class="form-control mr-0 w-75" type="text" placeholder="Search Product">
               <button class="btn btn-success" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
             </form>
+          </div>
+          <div class="col-5 px-0 d-flex align-content-center">
+            <div>
+              <i class="fas fa-user text-dark mt-2" style="font-size: 35px;"></i>
+            </div>
+            <div class="d-flex flex-column ml-2">
+              <div>
+                <a href="#" class="text-dark pr-2 border-secondary" style="border-right: 2px solid;">Login</a>
+                <a href="#" class="text-dark">Register</a>
+              </div>
+              <span class="text-dark">Your Account</span>
+            </div>
+            <div class="ml-4">
+              <i class="fas fa-cart-plus text-dark" style="font-size: 30px; margin-top: 11px;"></i>
+            </div>
+
+              
+                <a href="#" class="text-dark pl-2" style="padding-top: 14px;">Your Cart</a>
           </div>
         </div>
       </div>
     </nav>
-    
-    
     <nav class="navbar navbar-expand-sm navbar-light bgprimary py-0">
       <div class="container">
         <div class="collapse navbar-collapse row" id="collapsibleNavId">
           <ul class="navbar-nav col-3">
             <li class="nav-item">
-              <a class="nav-link font-weight-bold text-white px-0" href="#">PRODUCT CATEGORIES</a>
+              <a class="nav-link font-weight-bold text-dark px-0" href="#"><i class="fas fa-grip-horizontal"></i>
+                PRODUCT CATEGORIES</a>
             </li>
           </ul>
           <ul class="navbar-nav col-9">
             <li class="nav-item">
-              <a class="nav-link font-weight-bold text-white" href="#">HOME PAGE</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link font-weight-bold mx-2 text-white" href="#">DOG SHOP</a>
+              <a class="nav-link font-weight-bold text-dark" href="#">HOME PAGE</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle font-weight-bold text-white" href="#" id="navbardrop" data-toggle="dropdown">
+              <a class="nav-link dropdown-toggle font-weight-bold text-dark" href="#" id="navbardrop"
+                data-toggle="dropdown">
                 DOG SHOP
               </a>
               <div class="dropdown-menu">
@@ -51,7 +66,8 @@
               </div>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle font-weight-bold text-white" href="#" id="navbardrop" data-toggle="dropdown">
+              <a class="nav-link dropdown-toggle font-weight-bold text-dark" href="#" id="navbardrop"
+                data-toggle="dropdown">
                 CAT SHOP
               </a>
               <div class="dropdown-menu">
@@ -63,10 +79,13 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link mx-2 font-weight-bold text-white" href="#">BLOG</a>
+              <a class="nav-link font-weight-bold mx-2 text-dark" href="#">PET SPA</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link font-weight-bold text-white" href="#">CONTACT</a>
+              <a class="nav-link mx-2 font-weight-bold text-dark" href="#">BLOG</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link font-weight-bold text-dark" href="#">CONTACT</a>
             </li>
           </ul>
         </div>
