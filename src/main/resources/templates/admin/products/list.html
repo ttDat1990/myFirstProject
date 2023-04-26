@@ -13,14 +13,14 @@
                   </div>
                   <div class="card-body">
                     <div th:if="${message != null}" class="alert alert-primary alert-dismissible fade show" id="mess" role="alert">
-                      <button type="button" class="close" data-dismiss="alert">&times;</button>
-                        <i>[[${message}]]</i>
-                    </div>
+                		<button type="button" class="close" data-dismiss="alert">&times;</button>
+                    	<i>[[${message}]]</i>
+                	</div>
                     <div class="row mt-2 mb-2">
                       <div class="col">
                         <form th:action="@{/admin/products}">
                           <div class="form-inline float-left">
-                            <input type="text" class="form-control ml-2" name="name" id="name" aria-describedby="helpId" placeholder="Product Name">
+                            <input type="text" class="form-control boder1" name="name" id="name" aria-describedby="helpId" placeholder="Product Name">
                             <button class="btn btn-primary ml-2">Search</button>
                           </div>
                         </form>
@@ -75,13 +75,7 @@
                           
                         </tbody>
                     </table>
-                      <script>
-                        function showConfirmModalDialog(id, name){
-                          $('#productName').text(name);
-                          $('#yesOption').attr('href', '/admin/products/delete/' + id);
-                          $('#confirmationId').modal('show');
-                        }
-                      </script>
+                      
                       <!-- Start Modal Delete Confirm -->
                       <div class="modal fade" id="confirmationId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
                         <div class="modal-dialog" role="document">

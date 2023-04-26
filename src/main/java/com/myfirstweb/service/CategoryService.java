@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 
 import com.myfirstweb.domain.Category;
+import com.myfirstweb.domain.Product;
 
 public interface CategoryService {
 
@@ -59,5 +60,7 @@ public interface CategoryService {
 	List<Category> findByNameContaining(String name);
 
 	Page<Category> findByNameContaining(String name, Pageable pageable);
+
+	List<Product> findByCategoryId(Long categoryId);
 
 }

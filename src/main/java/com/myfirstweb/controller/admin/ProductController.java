@@ -126,7 +126,7 @@ public class ProductController {
 						try {
 							storageService.delete(opt.get().getImage());
 						} catch (IOException e) {
-							model.addAttribute("message1", "Product" + item + "is can not delete");
+							model.addAttribute("message1", "Product " + item + " is can not delete");
 							e.printStackTrace();
 						}
 					}
@@ -134,7 +134,7 @@ public class ProductController {
 				} 	
 			});
 			
-			model.addAttribute("message", list.size() + "Products is Deleted");
+			model.addAttribute("message", list.size() + " Products had Deleted");
 		} else {
 			model.addAttribute("message", "Please Choose Product");
 		}
@@ -145,40 +145,64 @@ public class ProductController {
 	@PostMapping("saveOrUpdate")
 	public ModelAndView saveOrUpdate(ModelMap model, @Valid @ModelAttribute("product") ProductDto dto,
 			BindingResult result) throws IOException {
-
+		// Nếu quá trình binding gặp lỗi thì trả về lại trang edit
 		if (result.hasErrors()) {
 			return new ModelAndView("admin/products/addOrEdit");
 		}
+		
+		//Tạo 1 entity mới, sau đó coppy dữ liệu từ dto vào entity
 		Product entity = new Product();
 		BeanUtils.copyProperties(dto, entity);
 		
+		// Tạo 1 category mới, set id cho category lấy từ dto (do trong entity không có trường category id mà chỉ có nguyên 1 category)
 		Category category = new Category();
 		category.setCategoryId(dto.getCategoryId());
+		
+		// setcategory vừa tạo cho entity (sẽ tự join column categoryid với bảng category)
 		entity.setCategory(category);
+		
+		// Nếu trên dto người dùng có chọn file hình và có thông tin của product id nghĩa là đang edit(do productid tự đông generate được gửi lên từ dtb khi edit, tạo mới sẽ ko có)
 		if(!dto.getImageFile().isEmpty() && dto.getProductId() != null) {
+			//Trường hợp là edit thì tạo 1 chuỗi random
 			UUID uuid = UUID.randomUUID();
 			String uuString = uuid.toString();
-			
+			// gán chuỗi random đặt cho tên của file lấy từ dto
 			entity.setImage(storageService.getStoredFilename(dto.getImageFile(), uuString));
+			//lưu hình vào sever và lưu tên hình vào entity
 			storageService.store(dto.getImageFile(), entity.getImage());
+			// Bắt đầu xóa hình cũ của product:  tạo optional opt để lấy lên product đang edit
 			Optional<Product> opt = productService.findById(dto.getProductId());
+			//Nếu tìm thấy product có lưu hình thì xóa nó
 			if(!StringUtils.isEmpty(opt.get().getImage())) {
 				storageService.delete(opt.get().getImage());
 			}
+			model.addAttribute("message", "Product is updated!");
 			
-		} else if (!dto.getImageFile().isEmpty()) {
+		// else if Trường hợp có chọn file hình nhưng không có thông tin của product id từ dto nghĩa là đang tạo mới sản phẩm
+		} else if (!dto.getImageFile().isEmpty() && dto.getProductId() == null) {
+			// Lưu hình ảnh vào sever giống ở trên và không cần xóa hình cũ vì đây là tạo mới
 			UUID uuid = UUID.randomUUID();
 			String uuString = uuid.toString();
-			
 			entity.setImage(storageService.getStoredFilename(dto.getImageFile(), uuString));
 			storageService.store(dto.getImageFile(), entity.getImage());
-			
+			model.addAttribute("message", "Product is created!");
+		
+		// Trường hợp dto trả về không có hình ảnh, nhưng lại có productid nghĩa là edit nhưng không chọn hình ảnh mới
+		} else if (dto.getImageFile().isEmpty() && dto.getProductId() != null) {
+			//tạo optional opt để lấy lên product đang edit
+			Optional<Product> opt = productService.findById(dto.getProductId());
+			//Nếu tìm thấy product có lưu hình thì:
+			if(!StringUtils.isEmpty(opt.get().getImage())) {
+				// Lấy tên image của nó set cho entity là xong vì chỉ cần tên thì sẽ dẫn tới file hình cũ lưu trên sever
+				entity.setImage(opt.get().getImage());
+			}
+			model.addAttribute("message", "Product is updated!");
 		}
+		
+		//Lưu entity xuống dtb (nếu edit thì sẽ tự ghi đè(update))
 		productService.save(entity);
 
-		model.addAttribute("message", "Product is saved!");
-
-		return new ModelAndView("redirect:/admin/products", model);
+		return new ModelAndView("forward:/admin/products", model);
 	}
 
 	@RequestMapping("")
@@ -220,58 +244,4 @@ public class ProductController {
 		return "admin/products/list";
 	}
 
-//	@GetMapping("search")
-//	public String search(ModelMap model, @RequestParam(name = "name", required = false) String name) {
-//
-//		List<Category> list = null;
-//		if (StringUtils.hasText(name)) {
-//			list = categoryService.findByNameContaining(name);
-//		} else {
-//			list = categoryService.findAll();
-//		}
-//
-//		model.addAttribute("products", list);
-//
-//		return "admin/products/search";
-//	}
-
-	@GetMapping("searchpaginated")
-	public String search(ModelMap model, 
-			@RequestParam(name = "name", required = false) String name,
-			@RequestParam("page") Optional<Integer> page, 
-			@RequestParam("size") Optional<Integer> size) {
-
-		int currentPage = page.orElse(1);
-		int pageSize = size.orElse(5);
-		
-		Pageable pageable = PageRequest.of(currentPage-1, pageSize, Sort.by("name"));
-		Page<Product> resultPage = null;
-		
-		if (StringUtils.hasText(name)) {
-			resultPage = productService.findByNameContaining(name, pageable);
-			model.addAttribute("name", name);
-		} else {
-			resultPage = productService.findAll(pageable);
-		}
-		
-		int totalPages = resultPage.getTotalPages();
-		if(totalPages > 0) {
-			int start = Math.max(1, currentPage - 2);
-			int end = Math.min(currentPage + 2, totalPages);
-			
-			if(totalPages > 5) {
-				if(end == totalPages) start = end - 5;
-				else if(start == 1) end = start + 5;
-			}
-			List<Integer> pageNumbers = IntStream.rangeClosed(start, end)
-					.boxed()
-					.collect(Collectors.toList());
-			
-			model.addAttribute("pageNumbers", pageNumbers);
-		}
-
-		model.addAttribute("productPage", resultPage);
-
-		return "admin/products/searchpaginated";
-	}
 }

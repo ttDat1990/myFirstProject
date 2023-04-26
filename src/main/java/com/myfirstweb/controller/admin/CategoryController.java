@@ -1,5 +1,6 @@
 package com.myfirstweb.controller.admin;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -25,8 +26,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.myfirstweb.domain.Category;
+import com.myfirstweb.domain.Product;
 import com.myfirstweb.model.CategoryDto;
 import com.myfirstweb.service.CategoryService;
+import com.myfirstweb.service.ProductService;
+import com.myfirstweb.service.StorageService;
 
 import jakarta.validation.Valid;
 
@@ -35,6 +39,12 @@ import jakarta.validation.Valid;
 public class CategoryController {
 	@Autowired
 	CategoryService categoryService;
+	
+	@Autowired
+	ProductService productService;
+	
+	@Autowired
+	StorageService storageService;
 
 	@GetMapping("add")
 	public String add(Model model) {
@@ -62,6 +72,24 @@ public class CategoryController {
 	@GetMapping("delete/{categoryId}")
 	public ModelAndView delete(ModelMap model, @PathVariable("categoryId") Long categoryId) {
 
+		List<Product> products = categoryService.findByCategoryId(categoryId);
+		
+		if(products != null && !products.isEmpty()) {
+			products.stream().forEach(item -> {
+				
+					if(!StringUtils.isEmpty(item.getImage())) {
+						try {
+							storageService.delete(item.getImage());
+						} catch (IOException e) {
+							e.printStackTrace();
+						}
+					}
+					productService.delete(item);
+			});
+			
+			model.addAttribute("message1", products.size() + " Products had Deleted");
+		} 
+		
 		categoryService.deleteById(categoryId);
 
 		model.addAttribute("message", "Category is Deleted");

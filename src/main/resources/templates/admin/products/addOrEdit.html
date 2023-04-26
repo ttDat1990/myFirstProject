@@ -5,13 +5,13 @@
     </head>
     <body>
         <section class="row" layout:fragment="content">
-            <div class="col mt-5">
+            <div class="col-8 offset-2 mt-5">
                 <form th:action="@{/admin/products/saveOrUpdate}" method="post" enctype="multipart/form-data" th:object="${product}">
                     <div class="card">
 
                         <div class="card-header">
                             <h2 class="float-left" th:text="${product.isEdit}?'Edit Product' : 'Add New Product'"></h2>
-                            <button class="btn btn-primary btn-lg float-right" th:text="${product.isEdit}? 'Update' : 'Save'">Save</button>
+                            
                         </div>
 
                         <div class="card-body">
@@ -37,10 +37,10 @@
                                         <small id="quantityHid" th:if="${#fields.hasErrors('quantity')}" class="form-text text-muted">Quantity is required</small>
                                     </div>
 
-                                    <div class="input-group form-group pt-2">
-                                        <span class="input-group-text">Unit Price</span>
-                                        <input type="number" name="unitPrice" id="unitPrice" class="form-control" placeholder="Unit Price" th:field="*{unitPrice}">
-                                        <span class="input-group-text">$</span>
+                                    <div class="form-group">
+                                        <label for="unitPrice">Unit Price ($)</label>
+                                        <input type="number" name="unitPrice" id="unitPrice" class="form-control" aria-describedby="priceHid" placeholder="Unit Price ($)" th:field="*{unitPrice}">
+                                        <small id="priceHid" th:if="${#fields.hasErrors('unitPrice')}" class="form-text text-muted">Unit Price is required</small>
                                     </div>
                                     
                                     <div class="form-group">
@@ -52,15 +52,15 @@
 
                                 </div>
                                 <div class="col-5">
-                                    <img th:src="${product.image != null? '/admin/products/images/' + product.image : '/images/noimg.png'}" id="image" width="50%" class="img-fluid" alt="">
+                                    <!--th:src="${product.image != null? '/admin/products/images/' + product.image : '/images/noimg.png'}"  -->
+                                    <img id="image" th:src="${product.image != null? '/admin/products/images/' + product.image : '/images/noimg.png'}" src="/images/noimg.png" width="50%" class="img-fluid" alt="">
                                     <div class="form-group">
                                         <input type="file" onchange="chooseFile(this)" class="form-control-file" name="imageFile" id="productImage" placeholder="Product Image" aria-describedby="productHImage">
                                         
                                     </div>
-                                    <div class="input-group form-group">
-                                        <span class="input-group-text">Discount</span>
-                                        <input type="number" name="discount" id="discount" class="form-control" placeholder="Discount" th:field="*{discount}">
-                                        <span class="input-group-text">%</span>
+                                    <div class="form-group">
+                                        <label for="discount">Discount (%)</label>
+                                        <input type="number" name="discount" id="discount" class="form-control" placeholder="Discount (%)" th:field="*{discount}">
                                     </div>
 
                                     <div class="form-group">
@@ -87,7 +87,11 @@
                         </div>
 
                         </div>
-                        
+                         <div class="card-footer">
+                         	<div class="row">
+                         		<button class="btn btn-primary btn col" th:text="${product.isEdit}? 'Update' : 'Save'">Save</button>
+                         	</div>
+                        </div>
                     </div>
                 </form>
             </div>          

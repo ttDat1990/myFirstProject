@@ -1,8 +1,27 @@
 <!doctype html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-  <head>
-  </head>
-  <body>
-    <div th:fragment="header">This is header</div>
-  </body>
+
+<head>
+</head>
+
+<body>
+  <div th:fragment="header">
+    <div class="container">
+      <div class="row mt-2 ">
+        <div class="col-6 text-body px-0">Welcome to Dear Pet!</div>
+        <div class="col-6">
+          <div class="text-right d-flex">
+            <p class="mb-1">
+              <i class="fa fa-phone text-body" aria-hidden="true"></i> Hotline: <a class="text-body" href="tel:0909090909">0909090909</a>
+            </p>
+            <a href="#" class="mx-4 text-body">Hệ thống cửa hàng</a>
+            <a href="#" class="text-body">Tuyển dụng</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</body>
+
 </html>

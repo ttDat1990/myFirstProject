@@ -21,22 +21,25 @@
                   <div class="col">
                     <form th:action="@{/admin/categories/search}">
                       <div class="form-inline float-left">
-                        <label for="name">Name:</label>
-                        <input type="text" class="form-control ml-2" name="name" id="name" aria-describedby="helpId" placeholder="Name">
-                        <button class="btn btn-outline-primary ml-2">Search</button>
+                        <input type="text" class="form-control boder1" name="name" id="name" aria-describedby="helpId" placeholder="Name">
+                        <button class="btn btn-primary ml-2">Search</button>
                       </div>
                     </form>
                     <div class="float-right">
-                      <a class="btn btn-outline-primary" th:href="@{/admin/categories/add}">Add New Category</a>
+                      <a class="btn btn-primary" th:href="@{/admin/categories/add}">Add New Category</a>
                     </div>
                   </div>
                 </div>
                 <!--End Search and Add New -->
                 
-				<!--Start Message Success Action -->
+				        <!--Start Message Success Action -->
                 <div th:if="${message != null}" class="alert alert-primary alert-dismissible fade show" id="mess" role="alert">
                 	<button type="button" class="close" data-dismiss="alert">&times;</button>
                     <i>[[${message}]]</i>
+                </div>
+                <div th:if="${message1 != null}" class="alert alert-primary alert-dismissible fade show" id="mess1" role="alert">
+                	<button type="button" class="close" data-dismiss="alert">&times;</button>
+                    <i>[[${message1}]]</i>
                 </div>
                 <!-- End Message Success Action -->
                 
@@ -54,37 +57,41 @@
                         <td scope="row" class="pl-5" th:text="${category.categoryId}"></td>
                         <td th:text="${category.name}"></td>
                         <td class="text-right">
-                          <a th:href="@{'/admin/categories/edit/' + ${category.categoryId}}" class="btn btn-outline-warning"><i class="fas fa-edit"></i>Edit</a>
-                          <a th:href="@{'/admin/categories/delete/' + ${category.categoryId}}" class="btn btn-outline-danger"><i class="fas fa-recycle"></i> Delete</a>
+                          <a th:href="@{'/admin/categories/edit/' + ${category.categoryId}}" class="btn btn-warning"><i class="fas fa-edit"></i>Edit</a>
+                          <a  th:data-id="${category.categoryId}" 
+                              th:data-name="${category.name}" 
+                              onclick="showConfirmModalDialog1(this.getAttribute('data-id'), this.getAttribute('data-name'))"  
+                              class="btn btn-danger"><i class="fas fa-recycle"></i> Delete</a>
                         </td>
                       </tr>
                     </tbody>
                 </table>
                 <!-- End List -->
+
+                <!-- Start Modal Delete Confirm -->
+                <div class="modal fade" id="confirmationId" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+                  <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Confirmation</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                      </div>
+                      <div class="modal-body">
+                        Are you sure you want to delete Category <span class="warningtext" id="categoryName"></span> and <span class="warningtext">all Products</span>  belong to this Category ?
+                      </div>
+                      <div class="modal-footer">
+                        <a id="yesOption" type="button" class="btn btn-danger">Yes</a>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- End Modal Delete Confirm -->
+
               </div>
               <!-- End Card Body -->
-
-              <!-- <div class="card-footer text-muted">
-                <nav aria-label="Page navigation">
-                  <ul class="pagination justify-content-center">
-                    <li class="page-item disabled">
-                      <a class="page-link" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        <span class="sr-only">Previous</span>
-                      </a>
-                    </li>
-                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next">
-                        <span aria-hidden="true">&raquo;</span>
-                        <span class="sr-only">Next</span>
-                      </a>
-                    </li>
-                  </ul>
-                </nav>
-              </div> -->
-
             </div>
           </div>
         </section>

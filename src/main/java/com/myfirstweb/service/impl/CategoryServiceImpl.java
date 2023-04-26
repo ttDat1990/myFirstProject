@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.myfirstweb.domain.Category;
+import com.myfirstweb.domain.Product;
 import com.myfirstweb.repository.CategoryRepository;
 import com.myfirstweb.service.CategoryService;
 
@@ -19,6 +20,11 @@ public class CategoryServiceImpl implements CategoryService{
 
 	public CategoryServiceImpl(CategoryRepository categoryRepository) {
 		this.categoryRepository = categoryRepository;
+	}
+
+	@Override
+	public List<Product> findByCategoryId(Long categoryId) {
+		return categoryRepository.findByCategoryId(categoryId);
 	}
 
 	@Override

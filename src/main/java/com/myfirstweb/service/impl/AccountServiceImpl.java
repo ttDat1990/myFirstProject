@@ -33,7 +33,6 @@ public class AccountServiceImpl implements AccountService{
 		System.out.println("mk nhap: "+ password);
 		System.out.println("un nhap: "+ username);
 		
-		System.out.println("khop mk: " + bCryptPasswordEncoder.matches(password, optExist.get().getPassword()));
 		if(optExist.isPresent() && bCryptPasswordEncoder.matches(password, optExist.get().getPassword())) {
 			
 			optExist.get().setPassword("");
@@ -55,7 +54,6 @@ public class AccountServiceImpl implements AccountService{
 		} else {
 			entity.setPassword(bCryptPasswordEncoder.encode(entity.getPassword()));
 		}
-		entity.setPassword(bCryptPasswordEncoder.encode(entity.getPassword()));
 		
 		return accountRepository.save(entity);
 	}
