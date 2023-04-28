@@ -24,12 +24,14 @@
                 <div th:replace="admin/fragments/nav::nav"></div>
             </div>
         </nav>
-        <main class="container">
+        <main>
+        <section class="container-fluid" style="max-width:1400px;">
         <section class="row">
             <div class="col">
                 <div layout:fragment="content"></div>
             </div>
         </section>
+           </section>
         </main>
         <footer class="row">
             <div class="col">

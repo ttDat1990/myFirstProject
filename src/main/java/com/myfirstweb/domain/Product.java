@@ -50,6 +50,10 @@ public class Product implements Serializable{
 	@JoinColumn(name = "categoryId")
 	private Category category;
 	
+	@ManyToOne
+	@JoinColumn(name = "cartId")
+	private CartItem cartItem;
+	
 	@OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
 	private Set<OrderDetail> orderDetails;
 }

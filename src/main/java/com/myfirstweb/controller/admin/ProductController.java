@@ -202,7 +202,7 @@ public class ProductController {
 		//Lưu entity xuống dtb (nếu edit thì sẽ tự ghi đè(update))
 		productService.save(entity);
 
-		return new ModelAndView("forward:/admin/products", model);
+		return new ModelAndView("redirect:/admin/products", model);
 	}
 
 	@RequestMapping("")

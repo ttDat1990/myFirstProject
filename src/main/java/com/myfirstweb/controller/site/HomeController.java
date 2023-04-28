@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.myfirstweb.model.AccountDto;
 
 @Controller
-@RequestMapping("")
+@RequestMapping("site")
 public class HomeController {
 
-	@GetMapping("")
+	@GetMapping("home")
 	public String add(Model model) {
 		
 		return "site/home";

@@ -4,6 +4,11 @@
 	font-weight: bold;
 }
 
+.warningtext1 {
+	color: red; 
+	
+}
+
 .bgprimary{
 	background-color: #54c1c9;
 }
@@ -15,3 +20,83 @@
 .bgheader{
 	background-color: #54abc9ab;
 }
+
+.hoverr:hover {
+	color:#54c1c9 ;
+	text-decoration: none;
+}
+
+.color{
+	color:#343a40 ;
+}
+
+.card1 {
+	transition: all 0.3s;
+}
+
+.card1:hover{
+	transform: scale(1.05);
+}
+
+.textoverflow{
+	white-space: nowrap; 
+  width: 210px; 
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+.lineheight1{
+line-height: 50px;
+	vertical-align: middle;
+}
+
+textoverflow:hover {
+  overflow: visible;
+}
+
+/* [1] The container */
+.img-hover-zoom {
+  height: 300px; /* [1.1] Set it as per your need */
+  overflow: hidden; /* [1.2] Hide the overflowing of child elements */
+}
+
+/* [2] Transition property for smooth transformation of images */
+.img-hover-zoom img {
+  transition: transform .5s ease;
+}
+
+/* [3] Finally, transforming the image when container gets hovered */
+.img-hover-zoom:hover img {
+  transform: scale(1.5);
+    -webkit-filter: brightness(70%);
+    -webkit-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -ms-transition: all .5s ease;
+    transition: all .5s ease;
+}
+
+.hide1 {
+	left: 55px;
+ 	 top: 10px;
+	 visibility: hidden;
+  opacity: 0;
+  transition: visibility 3s, opacity .5s;
+   transition: top .5s;
+ 
+}
+
+.myDIV:hover + .hide1, .hide1:hover {
+ 
+   visibility: visible;
+  opacity: 1;
+  top: 100px;
+  
+}
+
+.positionbutton {
+	left: 123px;
+ 	 top: 180px;
+}
+

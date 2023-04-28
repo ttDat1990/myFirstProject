@@ -7,7 +7,7 @@
 <body>
   <div th:fragment="nav">
     <nav class="navbar navbar-expand-sm navbar-light bgsecondary py-0">
-      <div class="container">
+      <div class="container-fluid" style="max-width:1300px">
         <div class="collapse navbar-collapse row" id="collapsibleNavId">
           <div class="col-3">
             <a class="navbar-brand" href="#"><img src="/images/logo1.png" width="150px" alt="logo"></a>
@@ -34,26 +34,26 @@
             </div>
 
               
-                <a href="#" class="text-dark pl-2" style="padding-top: 14px;">Your Cart</a>
+                <a th:href="@{/site/cart}" class="text-dark pl-2" style="padding-top: 14px;">Your Cart</a>
           </div>
         </div>
       </div>
     </nav>
     <nav class="navbar navbar-expand-sm navbar-light bgprimary py-0">
-      <div class="container">
+      <div class="container-fluid" style="max-width:1330px">
         <div class="collapse navbar-collapse row" id="collapsibleNavId">
-          <ul class="navbar-nav col-3">
+          <ul class="navbar-nav col-2 float-right">
             <li class="nav-item">
               <a class="nav-link font-weight-bold text-dark px-0" href="#"><i class="fas fa-grip-horizontal"></i>
                 PRODUCT CATEGORIES</a>
             </li>
           </ul>
-          <ul class="navbar-nav col-9">
+          <ul class="navbar-nav col-10">
             <li class="nav-item">
-              <a class="nav-link font-weight-bold text-dark" href="#">HOME PAGE</a>
+              <a class="nav-link font-weight-bold text-dark" th:href="@{/site/home}">HOME PAGE</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle font-weight-bold text-dark" href="#" id="navbardrop"
+              <a class="nav-link dropdown-toggle font-weight-bold text-dark px-4" href="#" id="navbardrop"
                 data-toggle="dropdown">
                 DOG SHOP
               </a>
@@ -79,13 +79,16 @@
               </div>
             </li>
             <li class="nav-item">
-              <a class="nav-link font-weight-bold mx-2 text-dark" href="#">PET SPA</a>
+              <a class="nav-link font-weight-bold mx-2 text-dark px-4" href="#">PET SPA</a>
             </li>
             <li class="nav-item">
               <a class="nav-link mx-2 font-weight-bold text-dark" href="#">BLOG</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link font-weight-bold text-dark" href="#">CONTACT</a>
+              <a class="nav-link font-weight-bold text-dark px-4" href="#">CONTACT</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link font-weight-bold text-dark px-4" href="#">ABOUT US</a>
             </li>
           </ul>
         </div>
