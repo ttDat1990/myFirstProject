@@ -11,7 +11,7 @@ import com.myfirstweb.model.AccountDto;
 @RequestMapping("site")
 public class HomeController {
 
-	@GetMapping("home")
+	@RequestMapping("home")
 	public String add(Model model) {
 		
 		return "site/home";

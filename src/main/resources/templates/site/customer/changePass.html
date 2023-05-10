@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{site/customer/detail.html}">
+
+<head>
+
+</head>
+
+<body>
+ 
+       
+     
+    
+    <div layout:fragment="accdetailnav">
+    <h4>Change Password</h4>
+    <div class="row">
+    	<div class="col-5">
+    	<small class="warningtext1">[[${message}]]</small>
+    	
+         <form th:action="@{/site/customer/savechangepass}" method="post" th:object="${customerdto}">
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" id="password" placeholder="Enter password" name="password" required>
+          <small th:if="${#fields.hasErrors('password')}" th:errors="*{password}" th:class="${#fields.hasErrors('password')}? error" class="warningtext1"></small>
+        </div>
+        
+        <div class="form-group">
+          <label for="newpassword1">New password:</label>
+          <input type="password" class="form-control" id="newpassword1" placeholder="Enter new password" name="newpassword1" required>
+          <small class="warningtext1" th:if="${#fields.hasErrors('newpassword1')}" th:errors="*{newpassword1}" th:class="${#fields.hasErrors('newpassword1')}? error" ></small>
+        </div>
+        
+        <div class="form-group">
+          <label for="newpassword2">New password repeat:</label>
+          <input type="password" class="form-control" id="newpassword2" placeholder="Enter new password" name="newpassword2" required>
+          <small th:if="${#fields.hasErrors('newpassword2')}" th:errors="*{newpassword2}" th:class="${#fields.hasErrors('newpassword2')}? error" class="warningtext1"></small>
+          
+        </div>
+        
+        
+        
+        <button class="btn btn-info w-50 mb-3">Change Password</button>
+      </form>
+    	</div>
+    </div>
+    		
+         
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>

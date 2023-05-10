@@ -13,6 +13,11 @@
 	background-color: #54c1c9;
 }
 
+.colorprimary{
+	color: #54c1c9;
+	font-weight: bold;
+}
+
 .bgsecondary{
 	background-color: #fff;
 }
@@ -100,3 +105,244 @@ textoverflow:hover {
  	 top: 180px;
 }
 
+@media (max-width: 991px) {
+    .footer {
+        padding-bottom:60px
+    }
+}
+
+.footer .logo {
+    display: block;
+    margin-bottom: 20px
+}
+
+.footer .logo img {
+    width: auto;
+    max-width: 250px;
+    height: unset
+}
+
+.footer h4 {
+    font-family: var(--font-title);
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold
+}
+
+@media (max-width: 767px) {
+    .footer h4 {
+        margin-top:10px;
+        position: relative
+    }
+
+    .footer h4.title-menu:not(.faild):after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 7px;
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 7px 5px 0 5px;
+        border-color: #fff transparent transparent transparent;
+        transition: all 0.5s
+    }
+}
+
+@media (max-width: 767px) {
+    .footer .title-menu.active:after {
+        transform:rotate(-180deg)
+    }
+
+    .footer .title-menu.active ~ ul {
+        display: block
+    }
+}
+
+.footer ul {
+    padding: 0
+}
+
+@media (max-width: 767px) {
+    .footer ul {
+        display:none
+    }
+}
+
+.footer ul li {
+    margin: 0 0 13px;
+    font-size: 14px
+}
+
+.footer p {
+    display: inline-block;
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 14px
+}
+
+.footer .first-footer {
+    padding: 40px 0 20px
+}
+
+.footer .first-footer h4 {
+    margin-bottom: 20px
+}
+
+.footer .first-footer .ico {
+    padding-left: 30px;
+    position: relative;
+    margin-bottom: 10px
+}
+
+.footer .first-footer .ico p {
+    display: inline
+}
+
+.footer .first-footer .ico svg {
+    width: 17px;
+    height: 18px;
+    position: absolute;
+    left: 0;
+    top: 5px;
+    fill: #fff
+}
+
+.footer .last-h4 {
+    margin-top: 20px
+}
+
+.footer a {
+    color: #fff
+}
+
+.footer a:hover {
+    color: var(--hover)
+}
+
+.footer .company-phone .phone {
+    display: flex;
+    align-items: center
+}
+
+.footer .company-phone .phone:first-child {
+    margin-bottom: 10px
+}
+
+.footer .company-phone .phone .icon {
+    width: 30px;
+    height: 40px;
+    fill: #fff
+}
+
+.footer .company-phone .phone .phone-detail {
+    font-size: 14px;
+    margin-bottom: 0
+}
+
+.footer .company-phone .phone .phone-detail a {
+    font-size: 24px;
+    font-weight: 600;
+    margin-left: 6px;
+    line-height: 1.2
+}
+
+.footer .company-phone .phone .phone-detail span {
+    font-size: 13px;
+    font-weight: 400;
+    padding-left: 10px
+}
+
+.footer .company-phone .mail {
+    position: relative;
+    padding-top: 10px;
+    display: flex;
+    align-items: center;
+    margin-top: 15px
+}
+
+.footer .company-phone .mail:before {
+    position: absolute;
+    content: "";
+    width: 100%;
+    left: 0;
+    top: 0;
+    border-top: 1px solid #004374
+}
+
+.footer .company-phone .mail .mail-detail {
+    display: flex;
+    margin-bottom: 0
+}
+
+.footer .company-phone .mail .icon {
+    width: 27px;
+    height: 33px;
+    margin-right: 5px;
+    fill: #fff
+}
+
+.footer .company-phone .mail a {
+    color: #fff;
+    font-size: 14px;
+    margin-left: 10px
+}
+
+.footer .company-phone .mail a:hover {
+    color: var(--hover)
+}
+
+.footer .social {
+    text-align: right
+}
+
+@media (max-width: 767px) {
+    .footer .social {
+        margin-bottom:7px;
+        text-align: center
+    }
+}
+
+.footer .social svg {
+    width: 20px;
+    height: 20px
+}
+
+.footer .social a {
+    display: inline-block;
+    margin-right: 10px
+}
+
+.footer .social a svg {
+    fill: #fff
+}
+
+.footer .social a:hover svg {
+    fill: var(--hover)
+}
+
+.footer .copyright {
+    color: #fff;
+    font-size: 14px
+}
+
+.footer .copyright .inner {
+    padding-top: 20px;
+    border-top: solid 1px #004374;
+    margin-top: 10px;
+    padding-bottom: 15px
+}
+
+.footer .copyright a {
+    color: var(--hover)
+}
+
+@media (max-width: 767px) {
+    .footer .copyright {
+        text-align:center
+    }
+
+    .footer .opacity1 {
+        display: block
+    }
+}

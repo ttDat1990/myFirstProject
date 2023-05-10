@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{site/dashboardSiteLayout.html}">
+
+<head>
+
+</head>
+
+<body>
+  <section class="row" layout:fragment="content">
+
+    <div class="col-2 my-5">
+         <h4>Account Detail</h4>
+        <div class="mb-3">
+        	Hello, <span class="colorprimary">[[${customer.name}]]</span> 
+        </div>
+         <div class="mb-3">
+         	<a th:href="@{/site/customer/accinfo}" class="hoverr color">Account informations</a>
+         </div>
+          <div class="mb-3">
+          <a th:href="@{/site/customer/accorder}" class="hoverr color">Account orders</a>
+         </div>
+          <div class="mb-3">
+         	<a th:href="@{/site/customer/changepass}" class="hoverr color">Change password</a>
+         </div>
+          <div class="mb-3">
+          <a th:href="@{/logout}" class="hoverr color">Log out</a>
+         </div>
+         
+        
+         
+         
+       
+         
+    </div>
+    
+    <div class="col-10 my-5">
+    <div layout:fragment="accdetailnav"></div>
+         
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+  </section>
+</body>
+
+</html>

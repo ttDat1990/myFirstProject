@@ -31,7 +31,7 @@ public class Customer implements Serializable {
 	private String name;
 	@Column(columnDefinition = "nvarchar(100) not null")
 	private String email;
-	@Column(length = 20, nullable = false)
+	@Column(length = 80, nullable = false)
 	private String password;
 	@Column(length = 20)
 	private String phone;

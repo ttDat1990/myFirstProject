@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{site/customer/detail.html}">
+
+<head>
+
+</head>
+
+<body>
+ 
+       
+     
+    
+    <div layout:fragment="accdetailnav">
+         <div>
+         <h4>Account Detail</h4>
+    <div class="mb-3"><b>Name: </b>[[${customer.name}]]</div>
+    <div><b>Email: </b>[[${customer.email}]]</div>
+  </div>
+  
+         
+    </div>
+    
+
+
+
+
+
+
+
+
+
+
+</body>
+
+</html>
