@@ -32,6 +32,16 @@ public class ProductServiceImpl implements ProductService{
 		return productRepository.saveAll(entities);
 	}
 	
+	
+	public List<Product> findByPrice1(Double min, Double max) {
+		return productRepository.findByPrice1(min, max);
+	}
+
+	
+	public List<Product> findByPrice1(Double min, Double max, Pageable pageable) {
+		return productRepository.findByPrice1(min, max, pageable);
+	}
+
 	@Override
 	public Page<Product> findByNameContaining(String name, Pageable pageable) {
 		return productRepository.findByNameContaining(name, pageable);

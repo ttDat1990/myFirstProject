@@ -2,11 +2,13 @@ package com.myfirstweb.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Set;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -38,10 +40,10 @@ public class Order implements Serializable{
 	@Column(nullable = false)
 	private short status;
 	
-	@ManyToOne
-	@JoinColumn(name = "customerId")
+	@ManyToOne (fetch = FetchType.LAZY)
+	@JoinColumn(name = "customerId", nullable = false)
 	private Customer customer;
 	
-	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-	private Set<OrderDetail> orderDetails;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "order", cascade = CascadeType.ALL)
+	private Set<OrderDetail> orderDetails = new HashSet<OrderDetail>(0);
 }

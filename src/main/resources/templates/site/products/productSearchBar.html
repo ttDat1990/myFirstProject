@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+  layout:decorate="~{site/dashboardSiteLayout.html}">
+
+<head>
+
+</head>
+
+<body>
+  <section class="row" layout:fragment="content">
+
+    <div class="col-3 mt-4">
+      <div class="colorprimarynotbold bordersearch pl-2 bgsecondary">
+        <div style="font-size: 20px;">Product filter</div>
+        <span style="font-size: 16px;">Easy and accurate for find products</span>
+      </div>
+
+      <div class="bgsecondary mt-3">
+        <div class="boderbot pl-3 pt-2">
+          <h4>Filter by Price</h4>
+        </div>
+        <div>
+          <form th:action="@{/site/products/findByPrice}">
+            <div class="custom-control custom-checkbox my-3 ml-3 hoverr">
+              <input type="checkbox" class="custom-control-input" value="1" name="pricesearch" onchange="this.form.submit()">
+              <label class="custom-control-label" for="customCheck">From 100.000₫ to 200.000₫</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-3 ml-3 hoverr">
+              <input type="checkbox" class="custom-control-input" value="2" name="pricesearch" onchange="this.form.submit()">
+              <label class="custom-control-label" for="customCheck1">From 200.000₫ to 400.000₫</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-3 ml-3 hoverr">
+              <input type="checkbox" class="custom-control-input" value="3" name="pricesearch" onchange="this.form.submit()">
+              <label class="custom-control-label" for="customCheck2">From 400.000₫ to 800.000₫</label>
+            </div>
+            <div class="custom-control custom-checkbox mb-3 ml-3 hoverr">
+              <input type="checkbox" class="custom-control-input" value="4" name="pricesearch" onchange="this.form.submit()">
+              <label class="custom-control-label" for="customCheck3">From 800.000₫ to 1.000.000₫</label>
+            </div>
+
+            <div class="custom-control custom-checkbox mb-3 ml-3 hoverr">
+              <input type="checkbox" class="custom-control-input" value="5" name="pricesearch" onchange="this.form.submit()">
+              <label class="custom-control-label" for="customCheck4">From 1.000.000₫ to 2.000.000₫</label>
+            </div>
+            <div class="custom-control custom-checkbox pb-2 ml-3 hoverr">
+              <input type="checkbox" class="custom-control-input" value="6" name="pricesearch" onchange="this.form.submit()">
+              <label class="custom-control-label" for="customCheck5">over 2.000.000₫</label>
+            </div>
+
+
+          </form>
+        </div>
+
+      </div>
+      
+      <div class="bgsecondary mt-3">
+        <div class="boderbot pl-3 pt-2">
+          <h4>Filter by Category</h4>
+        </div>
+        <div>
+        
+            <div class="bordersearchcategory">
+              <a th:href="@{/#}" class="colortextdefault hoverr nav-link" >Cat Food</a>
+            </div>
+            <div class="bordersearchcategory">
+              <a th:href="@{/#}" class="colortextdefault hoverr nav-link">Dog Food</a>
+            </div>
+            <div class="bordersearchcategory">
+              <a th:href="@{/#}" class="colortextdefault hoverr nav-link" >Accessory</a>
+            </div>
+            <div class="bordersearchcategory">
+              <a th:href="@{/#}" class="colortextdefault hoverr nav-link" >Pet Care</a>
+            </div>
+            <div class="bordersearchcategory">
+              <a th:href="@{/#}" class="colortextdefault hoverr nav-link" >Pet Clean</a>
+            </div>
+             <div class="bordersearchcategory">
+              <a th:href="@{/#}" class="colortextdefault hoverr nav-link" >House Cage Pallet</a>
+            </div>
+             <div class="bordersearchcategory">
+              <a th:href="@{/#}" class="colortextdefault hoverr nav-link" >Medicine</a>
+            </div>
+           
+
+
+       
+        </div>
+
+      </div>
+
+    </div>
+    <div class="col-9">
+      <div layout:fragment="detailProductSearch"></div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+  </section>
+</body>
+
+</html>

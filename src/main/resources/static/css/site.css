@@ -13,13 +13,42 @@
 	background-color: #54c1c9;
 }
 
+.boderbot {
+	border-bottom: #54c1c9 solid 2px;
+}
+
 .colorprimary{
 	color: #54c1c9;
 	font-weight: bold;
 }
 
+.bordersearch{
+    border: #54c1c9 dashed 1px;
+    border-radius: 5px;
+}
+
+.bordersearchcategory{
+    border-bottom: #ebebeb solid 1px;
+}
+
+.contentwidth{
+	width: 100%;
+}
+
+.colorprimarynotbold{
+	color: #2f8d95;
+}
+
+.colortextdefault{
+	color: #000000;
+}
+
 .bgsecondary{
 	background-color: #fff;
+}
+
+.bgproduct{
+	background-color: #ffffff;
 }
 
 .bgheader{

@@ -72,4 +72,8 @@ public interface ProductService {
 
 	Page<Product> findByNameContaining(String name, Pageable pageable);
 
+	List<Product> findByPrice1(Double min, Double max, Pageable pageable);
+
+	List<Product> findByPrice1(Double min, Double max);
+
 }

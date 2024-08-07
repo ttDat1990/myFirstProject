@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -32,11 +33,11 @@ public class OrderDetail implements Serializable{
 	@Column(nullable = false)
 	private double unitPrice;
 	
-	@ManyToOne
-	@JoinColumn(name = "productId")
+	@ManyToOne (fetch = FetchType.LAZY)
+	@JoinColumn(name = "productId", nullable = false, insertable = false, updatable = false)
 	private Product product;
 	
-	@ManyToOne
-	@JoinColumn(name = "orderId")
+	@ManyToOne (fetch = FetchType.LAZY)
+	@JoinColumn(name = "orderId", nullable = false, insertable = false, updatable = false)
 	private Order order;
 }

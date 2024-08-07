@@ -17,4 +17,6 @@ public interface CategoryRepository extends JpaRepository<Category, Long>{
 	Page<Category> findByNameContaining(String name, Pageable pageable);
 	@Query("SELECT p FROM Product p Where p.category.id=?1")
 	List<Product> findByCategoryId(Long categoryId);
+	
+	
 }
